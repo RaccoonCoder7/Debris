@@ -12,6 +12,10 @@ public class GameSceneManager : MonoBehaviour
     public Button redButton;
     public Button greenButton;
     public Button blueButton;
+    public Button pauseButton;
+    public Button resumeButton;
+    public Button returnButton;
+    public GameObject pausePanel;
 
     private enum SelectedColor
     {
@@ -32,6 +36,26 @@ public class GameSceneManager : MonoBehaviour
         redButton.onClick.AddListener(OnClickRedButton);
         greenButton.onClick.AddListener(OnClickGreenButton);
         blueButton.onClick.AddListener(OnClickBlueButton);
+        pauseButton.onClick.AddListener(OnClickPauseButton);
+        resumeButton.onClick.AddListener(OnClickResumeButton);
+        returnButton.onClick.AddListener(OnClickReturnButton);
+    }
+
+    private void OnClickPauseButton()
+    {
+        pausePanel.SetActive(true);
+        // TODO: 타이머 일시정지
+    }
+
+    private void OnClickResumeButton()
+    {
+        pausePanel.SetActive(false);
+        // TODO: 타이머 재생
+    }
+
+    private void OnClickReturnButton()
+    {
+        // TODO: 씬 전환: fail
     }
 
     private void OnClickTopButton()
@@ -90,16 +114,31 @@ public class GameSceneManager : MonoBehaviour
 
     private void SetPuzzleColor(PieceData selectedPiece)
     {
-        Color resultColor = Color.black;
-        selectedPiece.button.image.color = new Color(
-            (float)(selectedColor & SelectedColor.Red),
-            (float)(selectedColor & SelectedColor.Green),
-            (float)(selectedColor & SelectedColor.Blue)
-        );
+        selectedPiece.button.image.color = GetColor(selectedPiece.button);
 
         foreach (var piece in selectedPiece.connectedPieceList)
         {
-            piece.button.image.color = resultColor;
+            piece.button.image.color = GetColor(piece.button);
         }
+    }
+
+    private Color GetColor(Button targetButton)
+    {
+        if (selectedColor == SelectedColor.None)
+        {
+            return Color.black;
+        }
+
+        var btnColor = targetButton.image.color;
+        bool isRed = ((selectedColor & SelectedColor.Red) != 0) || btnColor.r != 0;
+        bool isGreen = ((selectedColor & SelectedColor.Green) != 0) || btnColor.g != 0;
+        bool isBlue = ((selectedColor & SelectedColor.Blue) != 0) || btnColor.b != 0;
+        Color result = new Color(
+            isRed ? 1 : 0,
+            isGreen ? 1 : 0,
+            isBlue ? 1 : 0
+        );
+
+        return result;
     }
 }
