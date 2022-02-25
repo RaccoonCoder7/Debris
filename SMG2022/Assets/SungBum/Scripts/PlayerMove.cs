@@ -14,6 +14,11 @@ public class PlayerMove : MonoBehaviour
 
     // Update is called once per frame
 
+    private void Start()
+    {
+        this.gameObject.transform.position = GameMgr.In.PlayerPos;
+    }
+
     void Update()
     {
         PCMove();

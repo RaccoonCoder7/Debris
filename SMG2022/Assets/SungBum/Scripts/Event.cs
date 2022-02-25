@@ -27,7 +27,9 @@ public class Event : MonoBehaviour
 
                 SendEventNum();
 
-                //SceneManager.LoadScene("")
+                //SceneManager.LoadScene("GameScene");
+
+                this.gameObject.SetActive(false);
             }
         }
     }
