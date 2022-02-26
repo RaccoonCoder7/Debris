@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class RocketSceneMgr : MonoBehaviour
 {
+    public RawImage FadePan;
+
     public List<StagePart> StageRocketPart;
 
     public GameObject FireBtn;
@@ -15,6 +17,10 @@ public class RocketSceneMgr : MonoBehaviour
     // Start is called before the first frame update 
     void Start() 
     {
+        StartCoroutine(FadeOut(FadePan));
+
+        SoundMgr.In.PlayLoopSound("6_MainMenuTheme");
+
         TypeSetting();
         ActiveImg();
 
@@ -28,10 +34,19 @@ public class RocketSceneMgr : MonoBehaviour
 
     public void FireRocket()
     {
-        GameMgr.In.Stage++;
-        //SceneManager.LoadScene("EndingScene");
+        SoundMgr.In.PlaySound("4_button");
 
         GameMgr.In.PlayerPos = GameMgr.In.BasicPlayerPos;
+        GameMgr.In.CameraPos = GameMgr.In.BasicCameraPos;
+
+        StartCoroutine(FadeInEnding(FadePan));
+    }
+
+    public void AcriveMoveScene()
+    {
+        SoundMgr.In.PlaySound("4_button");
+
+        StartCoroutine(FadeInMoveScene(FadePan));
     }
 
     void ActiveImg()
@@ -43,12 +58,14 @@ public class RocketSceneMgr : MonoBehaviour
             if (GameMgr.In.clearedEvent[0] == true)
             {
                 StageRocketPart[StageNum].Part[0].texture = StageRocketPart[StageNum].RocketPart[0];
+                StageRocketPart[StageNum].Part[0].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
             if (GameMgr.In.clearedEvent[1] == true)
             {
                 StageRocketPart[StageNum].Part[1].texture = StageRocketPart[StageNum].RocketPart[1];
+                StageRocketPart[StageNum].Part[1].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
@@ -63,18 +80,21 @@ public class RocketSceneMgr : MonoBehaviour
             if (GameMgr.In.clearedEvent[2] == true)
             {
                 StageRocketPart[StageNum].Part[0].texture = StageRocketPart[StageNum].RocketPart[0];
+                StageRocketPart[StageNum].Part[0].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
             if (GameMgr.In.clearedEvent[3] == true)
             {
                 StageRocketPart[StageNum].Part[1].texture = StageRocketPart[StageNum].RocketPart[1];
+                StageRocketPart[StageNum].Part[1].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
             if (GameMgr.In.clearedEvent[4] == true)
             {
                 StageRocketPart[StageNum].Part[2].texture = StageRocketPart[StageNum].RocketPart[2];
+                StageRocketPart[StageNum].Part[2].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
@@ -83,5 +103,74 @@ public class RocketSceneMgr : MonoBehaviour
                 FireBtn.SetActive(true);
             }
         }
+    }
+
+    IEnumerator FadeInEnding(RawImage ObjColor)
+    {
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 0;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(0.007f);
+
+            i += Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i >= 1.0f)
+            {
+                break;
+            }
+        }
+        SceneManager.LoadScene("EndingScene");
+    }
+
+    IEnumerator FadeInMoveScene(RawImage ObjColor)
+    {
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 0;
+
+        while (true)
+        {
+
+            yield return new WaitForSeconds(0.007f);
+
+            i += Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i >= 1.0f)
+            {
+                break;
+            }
+        }
+        SceneManager.LoadScene("MoveScene");
+    }
+
+    IEnumerator FadeOut(RawImage ObjColor)
+    {
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 1;
+
+        while (true)
+        {
+
+            yield return new WaitForSeconds(0.007f);
+
+            i -= Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i <= 0.0f)
+            {
+                break;
+            }
+        }
+
+        ObjColor.gameObject.SetActive(false);
     }
 }
