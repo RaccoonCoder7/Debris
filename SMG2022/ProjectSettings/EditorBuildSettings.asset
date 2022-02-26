@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MoveScene.unity
     guid: 9a738b8dae801f041a749313eb7732fe
   - enabled: 1
-    path: Assets/Scenes/RocketScene.unity
-    guid: 23cc52c95d7eedc4a8009d3895e97fbd
-  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 0246c65839dcce844b20cea477d3284b
+  - enabled: 1
+    path: Assets/Scenes/RocketScene.unity
+    guid: 23cc52c95d7eedc4a8009d3895e97fbd
   - enabled: 1
     path: Assets/Scenes/EndingScene.unity
     guid: 431829b85f02e1046a64458b79dd9b84
