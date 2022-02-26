@@ -61,7 +61,7 @@ public class GameSceneManager : MonoBehaviour
         SceneManager.LoadScene("MoveScene");
     }
 
-    private void Awake()
+    private void Start()
     {
         var eventData = eventDataList.Find(x => x.eventNumber == GameMgr.In.EventNumber);
         targetEventData = Instantiate(eventData, puzzleParent);
@@ -166,9 +166,9 @@ public class GameSceneManager : MonoBehaviour
         }
 
         var btnColor = targetButton.image.color;
-        bool isRed = ((selectedColor & SelectedColor.Red) != 0) || btnColor.r != 0;
-        bool isGreen = ((selectedColor & SelectedColor.Green) != 0) || btnColor.g != 0;
-        bool isBlue = ((selectedColor & SelectedColor.Blue) != 0) || btnColor.b != 0;
+        bool isRed = ((selectedColor & SelectedColor.Red) != 0) || btnColor.r == 1;
+        bool isGreen = ((selectedColor & SelectedColor.Green) != 0) || btnColor.g == 1;
+        bool isBlue = ((selectedColor & SelectedColor.Blue) != 0) || btnColor.b == 1;
         Color result = new Color(
             isRed ? 1 : 0,
             isGreen ? 1 : 0,

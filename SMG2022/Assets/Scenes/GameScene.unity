@@ -409,7 +409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ce6e68e4bbb91e44eaa42128d70a7a33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -443,8 +443,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.052500002, y: 0.047500003}
   m_AnchorMax: {x: 0.94500005, y: 0.95000005}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 10}
+  m_SizeDelta: {x: 220, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &287228218
 GameObject:
@@ -780,8 +780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventDataList:
-  - {fileID: 7264847161387110176, guid: 8075dc4142c1b674783e5d1dfe0d4d2f, type: 3}
-  - {fileID: 7264847161387110176, guid: 08a4452d46f5a0d4a87564fd2ca14a51, type: 3}
+  - {fileID: 8876396845429620570, guid: 3e065549013f5374a9098fa72ec1e103, type: 3}
+  - {fileID: 2627499424316999262, guid: e5b3b61abeb72d9458a39c9be8b9bdc8, type: 3}
   redButton: {fileID: 650221593}
   greenButton: {fileID: 848584987}
   blueButton: {fileID: 2124179264}
@@ -3266,7 +3266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
