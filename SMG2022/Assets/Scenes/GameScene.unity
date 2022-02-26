@@ -236,7 +236,7 @@ MonoBehaviour:
   CameraPos: {x: 0, y: 0, z: 0}
   BasicCameraPos: {x: 0, y: 0, z: 0}
   Stage: 1
-  EventNumber: 4
+  EventNumber: 3
   clearedEvent: 0000000000
 --- !u!4 &169309355
 Transform:
@@ -786,6 +786,7 @@ MonoBehaviour:
   - {fileID: 8876396845429620570, guid: 3e065549013f5374a9098fa72ec1e103, type: 3}
   - {fileID: 2627499424316999262, guid: e5b3b61abeb72d9458a39c9be8b9bdc8, type: 3}
   - {fileID: 7589911899757934776, guid: 12a645aa9c8b51f4ab6be837b15cda72, type: 3}
+  - {fileID: 8153000756855552914, guid: 971856baa3f72794f9a6c834ebd231d1, type: 3}
   - {fileID: 2942468215385481346, guid: 6b381f66aadbe3b4f8d53ba07e32df86, type: 3}
   uiMgr: {fileID: 393198807}
   redButton: {fileID: 650221593}
