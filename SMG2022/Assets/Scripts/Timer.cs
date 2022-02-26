@@ -5,15 +5,10 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    private Text timeText;
+    public Text timeText;
     private bool isPaused;
     private float timeLimit;
     private GameSceneManager mgr;
-
-    private void Awake()
-    {
-        timeText = GetComponent<Text>();
-    }
 
     public void StartTimer(GameSceneManager mgr, float time)
     {
@@ -58,7 +53,6 @@ public class Timer : MonoBehaviour
                 yield return null;
             }
         }
-
         mgr.ReturnResult(false);
     }
 

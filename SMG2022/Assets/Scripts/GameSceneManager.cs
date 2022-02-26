@@ -6,19 +6,19 @@ using UnityEngine.UI;
 
 public class GameSceneManager : MonoBehaviour
 {
-    public PieceData topPiece;
-    public PieceData leftPiece;
-    public PieceData rightPiece;
-    public PieceData middlePiece;
+    public List<EventData> eventDataList = new List<EventData>();
     public Button redButton;
     public Button greenButton;
     public Button blueButton;
     public Button pauseButton;
     public Button resumeButton;
     public Button returnButton;
+    public Transform puzzleParent;
     public GameObject pausePanel;
     public Timer timer;
-    public float timeLimit;
+    public Image goalImage;
+
+    private EventData targetEventData;
 
     private enum SelectedColor
     {
@@ -41,19 +41,23 @@ public class GameSceneManager : MonoBehaviour
         SceneManager.LoadScene("MoveScene");
     }
 
-    private void Start()
+    private void Awake()
     {
-        topPiece.button.onClick.AddListener(OnClickTopButton);
-        leftPiece.button.onClick.AddListener(OnClickLeftButton);
-        rightPiece.button.onClick.AddListener(OnClickRightButton);
-        middlePiece.button.onClick.AddListener(OnClickMiddleButton);
+        var eventData = eventDataList.Find(x => x.eventNumber == GameMgr.In.EventNumber);
+        targetEventData = Instantiate(eventData, puzzleParent);
+        foreach (var piece in targetEventData.pieceDataList)
+        {
+            piece.button.onClick.AddListener(delegate { SetPuzzleColor(piece); });
+        }
         redButton.onClick.AddListener(OnClickRedButton);
         greenButton.onClick.AddListener(OnClickGreenButton);
         blueButton.onClick.AddListener(OnClickBlueButton);
         pauseButton.onClick.AddListener(OnClickPauseButton);
         resumeButton.onClick.AddListener(OnClickResumeButton);
         returnButton.onClick.AddListener(OnClickReturnButton);
-        timer.StartTimer(this, timeLimit);
+
+        goalImage.sprite = targetEventData.goalSprite;
+        timer.StartTimer(this, targetEventData.limitTime);
     }
 
     private void OnClickPauseButton()
@@ -73,31 +77,11 @@ public class GameSceneManager : MonoBehaviour
         ReturnResult(false);
     }
 
-    private void OnClickTopButton()
-    {
-        SetPuzzleColor(topPiece);
-    }
-
-    private void OnClickLeftButton()
-    {
-        SetPuzzleColor(leftPiece);
-    }
-
-    private void OnClickRightButton()
-    {
-        SetPuzzleColor(rightPiece);
-    }
-
-    private void OnClickMiddleButton()
+    private void OnClickRedButton()
     {
         // TestCode
         ReturnResult(true);
         return;
-        SetPuzzleColor(middlePiece);
-    }
-
-    private void OnClickRedButton()
-    {
         SetColorButtonColor(redButton, SelectedColor.Red);
     }
 
@@ -161,12 +145,8 @@ public class GameSceneManager : MonoBehaviour
     }
 
     [ContextMenu("Test")]
-    private void Test()
+    public void Test()
     {
-        float tmpTime = Mathf.Ceil(timeLimit);
-        int minute = (int)tmpTime / 60;
-        int second = (int)tmpTime % 60;
-
-        Debug.Log($"{minute:00}:{second:00}");
+        Debug.Log("Clicked");
     }
 }
