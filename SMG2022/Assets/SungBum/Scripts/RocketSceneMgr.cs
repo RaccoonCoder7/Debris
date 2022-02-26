@@ -12,6 +12,8 @@ public class RocketSceneMgr : MonoBehaviour
 
     public List<GameObject> StageRocketImg;
 
+    public GameObject EndingImg;
+
     public GameObject FireBtn;
 
     private int StageNum = GameMgr.In.Stage - 1;
@@ -31,8 +33,10 @@ public class RocketSceneMgr : MonoBehaviour
 
     void TypeSetting()
     {
-        StageRocketPart[StageNum].StageType.SetActive(true);
-        StageRocketImg[StageNum].SetActive(true);
+        if(GameMgr.In.Stage <= 2)
+        {
+            StageRocketPart[StageNum].StageType.SetActive(true);
+        }
 
         if(GameMgr.In.Stage <= 2)
         {
@@ -41,7 +45,7 @@ public class RocketSceneMgr : MonoBehaviour
 
         else
         {
-            StageRocketImg[2].SetActive(true);
+            EndingImg.SetActive(true);
         }
     }
 
@@ -66,7 +70,7 @@ public class RocketSceneMgr : MonoBehaviour
     {
         int FireCheck = 0;
 
-        if (StageRocketPart[StageNum].StageType.name == "Type1")
+        if (StageRocketPart[StageNum].StageType.name == "Type1" && GameMgr.In.Stage <= 2)
         {
             if (GameMgr.In.clearedEvent[0] == true)
             {
@@ -86,7 +90,7 @@ public class RocketSceneMgr : MonoBehaviour
             }
         }
 
-        else if (StageRocketPart[StageNum].StageType.name == "Type2")
+        else if (StageRocketPart[StageNum].StageType.name == "Type2" && GameMgr.In.Stage <= 2)
         {
             if (GameMgr.In.clearedEvent[2] == true)
             {

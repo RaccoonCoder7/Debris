@@ -610,7 +610,7 @@ MonoBehaviour:
   StageRocketImg:
   - {fileID: 873566860}
   - {fileID: 670082581}
-  - {fileID: 583902933}
+  EndingImg: {fileID: 583902933}
   FireBtn: {fileID: 27113077}
 --- !u!4 &313085680
 Transform:
