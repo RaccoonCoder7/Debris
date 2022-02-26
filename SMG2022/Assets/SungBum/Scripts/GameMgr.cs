@@ -10,5 +10,13 @@ public class GameMgr : SingletonMono<GameMgr>
 
     public int EventNumber = 0;
 
-    public List<bool> PartCheck;
+    public List<bool> ClerclearedEvent = new List<bool>(new bool[]
+        {
+            false,
+            false,
+            false,
+            false,
+            false
+        }
+    );
 }
