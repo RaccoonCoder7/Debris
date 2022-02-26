@@ -15,6 +15,8 @@ public class CameraMove : MonoBehaviour
     {
         cameraHalfWidth = Camera.main.aspect * Camera.main.orthographicSize;
         cameraHalfHeight = Camera.main.orthographicSize;
+
+        this.gameObject.transform.position = GameMgr.In.CameraPos;
     }
 
     private void LateUpdate()

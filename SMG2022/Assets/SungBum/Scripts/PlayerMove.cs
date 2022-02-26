@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(GameMgr.In.PlayerPos);
         this.gameObject.transform.position = GameMgr.In.PlayerPos;
     }
 
@@ -65,11 +66,6 @@ public class PlayerMove : MonoBehaviour
         else if (MoveX < 0)
         {
             this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        }
-
-        else
-        {
-            //Anim
         }
     }
 

@@ -30,6 +30,7 @@ public class Event : MonoBehaviour
                 Debug.Log("asd");
 
                 GameMgr.In.PlayerPos = GameObject.Find("Player").transform.position;
+                GameMgr.In.CameraPos = GameObject.Find("Main Camera").transform.position;
                 SendEventNum();
 
                 StartCoroutine(FadeIn(FadePan));

@@ -37,6 +37,7 @@ public class RocketSceneMgr : MonoBehaviour
         SoundMgr.In.PlaySound("4_button");
 
         GameMgr.In.PlayerPos = GameMgr.In.BasicPlayerPos;
+        GameMgr.In.CameraPos = GameMgr.In.BasicCameraPos;
 
         StartCoroutine(FadeInEnding(FadePan));
     }
@@ -107,8 +108,6 @@ public class RocketSceneMgr : MonoBehaviour
 
         while (true)
         {
-            Debug.Log(i);
-
             yield return new WaitForSeconds(0.007f);
 
             i += Time.deltaTime;
@@ -131,7 +130,6 @@ public class RocketSceneMgr : MonoBehaviour
 
         while (true)
         {
-            Debug.Log(i);
 
             yield return new WaitForSeconds(0.007f);
 
@@ -155,7 +153,6 @@ public class RocketSceneMgr : MonoBehaviour
 
         while (true)
         {
-            Debug.Log(i);
 
             yield return new WaitForSeconds(0.007f);
 

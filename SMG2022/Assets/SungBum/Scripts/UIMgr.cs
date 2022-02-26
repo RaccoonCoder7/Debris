@@ -28,8 +28,6 @@ public class UIMgr : MonoBehaviour
 
         Player = GameObject.Find("Player");
 
-        Debug.Log(GameMgr.In.Stage - 1);
-
         if((GameMgr.In.Stage - 1) > 0)
             BackGround.texture = BackGrounds[GameMgr.In.Stage - 1];
     }
@@ -55,13 +53,11 @@ public class UIMgr : MonoBehaviour
 
         if (InformationTxt.active == false)
         {
-            Debug.Log("open");
             InformationTxt.SetActive(true);
         }
 
         else
         {
-            Debug.Log("close");
             InformationTxt.SetActive(false);
         }
     }
@@ -71,6 +67,7 @@ public class UIMgr : MonoBehaviour
         SoundMgr.In.PlaySound("4_button");
 
         GameMgr.In.PlayerPos = Player.transform.position;
+        GameMgr.In.CameraPos = GameObject.Find("Main Camera").transform.position;
         StartCoroutine(FadeIn(FadePan));
     }
 
@@ -82,7 +79,6 @@ public class UIMgr : MonoBehaviour
 
         while (true)
         {
-            Debug.Log(i);
 
             yield return new WaitForSeconds(0.007f);
 
@@ -107,8 +103,6 @@ public class UIMgr : MonoBehaviour
 
         while (true)
         {
-            Debug.Log(i);
-
             yield return new WaitForSeconds(0.007f);
 
             i -= Time.deltaTime;

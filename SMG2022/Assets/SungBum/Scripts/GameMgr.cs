@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameMgr : SingletonMono<GameMgr>
 {
     public Vector3 PlayerPos;
-
     public Vector3 BasicPlayerPos;
+
+    public Vector3 CameraPos;
+    public Vector3 BasicCameraPos;
 
     public int Stage = 1;
 
