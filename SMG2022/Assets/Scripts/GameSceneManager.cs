@@ -35,7 +35,7 @@ public class GameSceneManager : MonoBehaviour
     {
         if (isSuccess)
         {
-            GameMgr.In.ClerclearedEvent[GameMgr.In.EventNumber] = isSuccess;
+            GameMgr.In.clearedEvent[GameMgr.In.EventNumber] = isSuccess;
         }
 
         SceneManager.LoadScene("MoveScene");

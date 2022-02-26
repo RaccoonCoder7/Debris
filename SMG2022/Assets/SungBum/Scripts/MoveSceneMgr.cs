@@ -6,6 +6,8 @@ public class MoveSceneMgr : MonoBehaviour
 {
     public List<GameObject> EventObj;
 
+    public List<GameObject> StageObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,13 +15,15 @@ public class MoveSceneMgr : MonoBehaviour
 
         foreach(GameObject Obj in EventObj)
         {
-            if(GameMgr.In.ClerclearedEvent[EventIdx] == true)
+            if(GameMgr.In.clearedEvent[EventIdx] == true)
             {
                 Obj.SetActive(false);
             }
 
             EventIdx++;
         }
+
+        StageObj[GameMgr.In.Stage - 1].SetActive(true);
     }
 
     // Update is called once per frame
