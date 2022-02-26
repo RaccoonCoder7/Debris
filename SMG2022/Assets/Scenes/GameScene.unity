@@ -591,6 +591,10 @@ MonoBehaviour:
   redButton: {fileID: 650221593}
   greenButton: {fileID: 848584987}
   blueButton: {fileID: 2124179264}
+  pauseButton: {fileID: 1039659096}
+  resumeButton: {fileID: 1503964101}
+  returnButton: {fileID: 217209159}
+  pausePanel: {fileID: 847766052}
 --- !u!114 &393198803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1635,7 +1639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &847766053
 RectTransform:
   m_ObjectHideFlags: 0
