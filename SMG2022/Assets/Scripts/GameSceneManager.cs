@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameSceneManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class GameSceneManager : MonoBehaviour
     public Button resumeButton;
     public Button returnButton;
     public GameObject pausePanel;
+    public Timer timer;
+    public float timeLimit;
 
     private enum SelectedColor
     {
@@ -26,6 +29,17 @@ public class GameSceneManager : MonoBehaviour
         All = int.MaxValue
     };
     private SelectedColor selectedColor;
+
+
+    public void ReturnResult(bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            GameMgr.In.ClerclearedEvent[GameMgr.In.EventNumber] = isSuccess;
+        }
+
+        SceneManager.LoadScene("MoveScene");
+    }
 
     private void Start()
     {
@@ -39,23 +53,24 @@ public class GameSceneManager : MonoBehaviour
         pauseButton.onClick.AddListener(OnClickPauseButton);
         resumeButton.onClick.AddListener(OnClickResumeButton);
         returnButton.onClick.AddListener(OnClickReturnButton);
+        timer.StartTimer(this, timeLimit);
     }
 
     private void OnClickPauseButton()
     {
         pausePanel.SetActive(true);
-        // TODO: 타이머 일시정지
+        timer.PauseTimer();
     }
 
     private void OnClickResumeButton()
     {
         pausePanel.SetActive(false);
-        // TODO: 타이머 재생
+        timer.ResumeTimer();
     }
 
     private void OnClickReturnButton()
     {
-        // TODO: 씬 전환: fail
+        ReturnResult(false);
     }
 
     private void OnClickTopButton()
@@ -75,6 +90,9 @@ public class GameSceneManager : MonoBehaviour
 
     private void OnClickMiddleButton()
     {
+        // TestCode
+        ReturnResult(true);
+        return;
         SetPuzzleColor(middlePiece);
     }
 
@@ -140,5 +158,15 @@ public class GameSceneManager : MonoBehaviour
         );
 
         return result;
+    }
+
+    [ContextMenu("Test")]
+    private void Test()
+    {
+        float tmpTime = Mathf.Ceil(timeLimit);
+        int minute = (int)tmpTime / 60;
+        int second = (int)tmpTime % 60;
+
+        Debug.Log($"{minute:00}:{second:00}");
     }
 }

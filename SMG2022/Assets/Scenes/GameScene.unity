@@ -595,6 +595,8 @@ MonoBehaviour:
   resumeButton: {fileID: 1503964101}
   returnButton: {fileID: 217209159}
   pausePanel: {fileID: 847766052}
+  timer: {fileID: 1858449435}
+  timeLimit: 5
 --- !u!114 &393198803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +690,7 @@ GameObject:
   - component: {fileID: 435266993}
   - component: {fileID: 435266992}
   m_Layer: 5
-  m_Name: Time (1)
+  m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3201,6 +3203,7 @@ GameObject:
   - component: {fileID: 1858449432}
   - component: {fileID: 1858449434}
   - component: {fileID: 1858449433}
+  - component: {fileID: 1858449435}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -3269,6 +3272,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858449431}
   m_CullTransparentMesh: 1
+--- !u!114 &1858449435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858449431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74238f690b9750f47830e896dc4cc1f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2026405546
 GameObject:
   m_ObjectHideFlags: 0

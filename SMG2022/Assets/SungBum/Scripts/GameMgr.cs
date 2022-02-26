@@ -6,7 +6,17 @@ public class GameMgr : SingletonMono<GameMgr>
 {
     public Vector3 PlayerPos;
 
-    public int Stage = 0;
+    public int Stage = 1;
 
     public int EventNumber = 0;
+
+    public List<bool> ClerclearedEvent = new List<bool>(new bool[]
+        {
+            false,
+            false,
+            false,
+            false,
+            false
+        }
+    );
 }
