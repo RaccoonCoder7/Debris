@@ -31,13 +31,13 @@ public class RocketSceneMgr : MonoBehaviour
 
         if (StageRocketPart[StageNum].StageType.name == "Type1")
         {
-            if (GameMgr.In.ClerclearedEvent[0] == true)
+            if (GameMgr.In.clearedEvent[0] == true)
             {
                 StageRocketPart[StageNum].Part[0].texture = StageRocketPart[StageNum].RocketPart[0];
                 FireCheck += 1;
             }
 
-            if (GameMgr.In.ClerclearedEvent[1] == true)
+            if (GameMgr.In.clearedEvent[1] == true)
             {
                 StageRocketPart[StageNum].Part[1].texture = StageRocketPart[StageNum].RocketPart[1];
                 FireCheck += 1;
@@ -51,19 +51,19 @@ public class RocketSceneMgr : MonoBehaviour
 
         else if (StageRocketPart[StageNum].StageType.name == "Type2")
         {
-            if (GameMgr.In.ClerclearedEvent[2] == true)
+            if (GameMgr.In.clearedEvent[2] == true)
             {
                 StageRocketPart[StageNum].Part[0].texture = StageRocketPart[StageNum].RocketPart[0];
                 FireCheck += 1;
             }
 
-            if (GameMgr.In.ClerclearedEvent[3] == true)
+            if (GameMgr.In.clearedEvent[3] == true)
             {
                 StageRocketPart[StageNum].Part[1].texture = StageRocketPart[StageNum].RocketPart[1];
                 FireCheck += 1;
             }
 
-            if (GameMgr.In.ClerclearedEvent[4] == true)
+            if (GameMgr.In.clearedEvent[4] == true)
             {
                 StageRocketPart[StageNum].Part[2].texture = StageRocketPart[StageNum].RocketPart[2];
                 FireCheck += 1;

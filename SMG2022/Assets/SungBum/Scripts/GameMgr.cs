@@ -10,7 +10,7 @@ public class GameMgr : SingletonMono<GameMgr>
 
     public int EventNumber = 0;
 
-    public List<bool> ClerclearedEvent = new List<bool>(new bool[]
+    public List<bool> clearedEvent = new List<bool>(new bool[]
         {
             false,
             false,
