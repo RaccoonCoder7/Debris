@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventNumber: 1
-  limitTime: 30
+  limitTime: 45
   goalSprite: {fileID: 21300000, guid: a69680cb6e33dda4cae06a32d78edc53, type: 3}
   pieceDataList:
   - {fileID: 8502162478539797774}
@@ -198,6 +198,8 @@ MonoBehaviour:
   - {fileID: 8502162478539797774}
   - {fileID: 8502162478371123196}
   - {fileID: 8502162478946418417}
+  goalColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8502162478371123171
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +336,8 @@ MonoBehaviour:
   button: {fileID: 0}
   connectedPieceList:
   - {fileID: 8502162478081288938}
+  goalColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8502162478539797877
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +474,8 @@ MonoBehaviour:
   button: {fileID: 0}
   connectedPieceList:
   - {fileID: 8502162478081288938}
+  goalColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8502162478946418420
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,3 +612,5 @@ MonoBehaviour:
   button: {fileID: 0}
   connectedPieceList:
   - {fileID: 8502162478081288938}
+  goalColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
