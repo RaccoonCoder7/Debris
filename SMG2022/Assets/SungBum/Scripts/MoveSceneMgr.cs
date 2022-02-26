@@ -28,6 +28,9 @@ public class MoveSceneMgr : MonoBehaviour
             EventIdx++;
         }
 
-        StageObj[GameMgr.In.Stage - 1].SetActive(true);
+        if (StageObj.Count > GameMgr.In.Stage - 1)
+        {
+            StageObj[GameMgr.In.Stage - 1].SetActive(true);
+        }
     }
 }
