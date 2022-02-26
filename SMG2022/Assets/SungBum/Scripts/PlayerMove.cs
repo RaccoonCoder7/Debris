@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
 
     float MoveX = 0;
 
+    bool SoundOnePlay = true;
+
     // Update is called once per frame
 
     private void Start()
@@ -29,6 +31,33 @@ public class PlayerMove : MonoBehaviour
         MoveX = Input.GetAxisRaw("Horizontal");
 
         this.gameObject.transform.position += new Vector3(MoveX * MovePower * Time.deltaTime, 0, 0);
+
+        if ((MoveX > 0 || MoveX < 0) && SoundOnePlay == true)
+        {
+            SoundOnePlay = false;
+            StartCoroutine("WalkSound");
+        }
+
+        else if(MoveX == 0 && SoundOnePlay == false)
+        {
+            SoundOnePlay = true;
+            StopCoroutine("WalkSound");
+        }
+    }
+
+    IEnumerator WalkSound()
+    {
+        Debug.Log("asd");
+
+        SoundMgr.In.PlaySound("walking1");
+
+        yield return new WaitForSeconds(0.5f);
+
+        SoundMgr.In.PlaySound("walking2");
+
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine("WalkSound");
     }
 
 /*
