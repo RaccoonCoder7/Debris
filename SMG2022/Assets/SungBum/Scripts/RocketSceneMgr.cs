@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RocketSceneMgr : MonoBehaviour
@@ -23,6 +24,14 @@ public class RocketSceneMgr : MonoBehaviour
     void TypeSetting()
     {
         StageRocketPart[StageNum].StageType.SetActive(true);
+    }
+
+    public void FireRocket()
+    {
+        GameMgr.In.Stage++;
+        //SceneManager.LoadScene("EndingScene");
+
+        GameMgr.In.PlayerPos = GameMgr.In.BasicPlayerPos;
     }
 
     void ActiveImg()

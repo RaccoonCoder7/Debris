@@ -6,6 +6,8 @@ public class GameMgr : SingletonMono<GameMgr>
 {
     public Vector3 PlayerPos;
 
+    public Vector3 BasicPlayerPos;
+
     public int Stage = 1;
 
     public int EventNumber = 0;
