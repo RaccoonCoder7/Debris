@@ -14,6 +14,8 @@ public class UI : MonoBehaviour
 
     void Start()
     {
+        SoundMgr.In.PlayLoopSound("6_MainMenuTheme");
+
         StartCoroutine(LoopTitle());
     }
 
