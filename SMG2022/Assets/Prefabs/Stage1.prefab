@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventNumber: 0
-  limitTime: 30
+  limitTime: 60
   goalSprite: {fileID: 21300000, guid: 736ca8c66c6098a4db3a7f788501f982, type: 3}
   pieceDataList:
   - {fileID: 7638976177117709684}
