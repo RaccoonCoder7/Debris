@@ -11,7 +11,10 @@ public class MoveSceneMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SoundMgr.In.PlayLoopSound("6_MainMenuTheme");
+        if (!SoundMgr.In.IsBGMPlaying())
+        {
+            SoundMgr.In.PlayLoopSound("6_MainMenuTheme");
+        }
 
         int EventIdx = 0;
 

@@ -21,7 +21,7 @@ public class RocketSceneMgr : MonoBehaviour
     {
         StartCoroutine(FadeOut(FadePan));
 
-        SoundMgr.In.PlayLoopSound("6_MainMenuTheme");
+        // SoundMgr.In.PlayLoopSound("6_MainMenuTheme");
 
         TypeSetting();
         ActiveImg();

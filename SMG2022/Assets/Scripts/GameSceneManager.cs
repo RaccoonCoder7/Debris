@@ -80,6 +80,7 @@ public class GameSceneManager : MonoBehaviour
 
         uiMgr.StartCoroutine(uiMgr.FadeIn());
         yield return new WaitForSeconds(1.0f);
+        SoundMgr.In.StopBGM();
 
         SceneManager.LoadScene("MoveScene");
     }
