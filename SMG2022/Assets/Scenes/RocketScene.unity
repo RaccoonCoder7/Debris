@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &20502393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -605,9 +605,9 @@ MonoBehaviour:
     - {fileID: 1050619380}
     - {fileID: 1042600330}
     RocketPart:
-    - {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 2800000, guid: d4083783daaa35b4fb0a0d070a509c32, type: 3}
+    - {fileID: 2800000, guid: f44dab5f564b3414bb7621999ce27979, type: 3}
+    - {fileID: 2800000, guid: 980a0c4d8de8fad41962656906c45112, type: 3}
   StageRocketImg:
   - {fileID: 873566860}
   - {fileID: 670082581}
