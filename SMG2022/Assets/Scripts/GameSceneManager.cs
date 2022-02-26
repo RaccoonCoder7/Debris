@@ -38,6 +38,13 @@ public class GameSceneManager : MonoBehaviour
             GameMgr.In.clearedEvent[GameMgr.In.EventNumber] = isSuccess;
         }
 
+        timer.PauseTimer();
+        // TODO: 결과창, 파라미터 1개 더받아서 결과창 띄울지 말지
+        Invoke("Test", 1f);
+    }
+
+    private void Test()
+    {
         SceneManager.LoadScene("MoveScene");
     }
 
@@ -47,7 +54,7 @@ public class GameSceneManager : MonoBehaviour
         targetEventData = Instantiate(eventData, puzzleParent);
         foreach (var piece in targetEventData.pieceDataList)
         {
-            piece.button.onClick.AddListener(delegate { SetPuzzleColor(piece); });
+            piece.button.onClick.AddListener(delegate { SetPieceColor(piece); });
         }
         redButton.onClick.AddListener(OnClickRedButton);
         greenButton.onClick.AddListener(OnClickGreenButton);
@@ -79,9 +86,6 @@ public class GameSceneManager : MonoBehaviour
 
     private void OnClickRedButton()
     {
-        // TestCode
-        ReturnResult(true);
-        return;
         SetColorButtonColor(redButton, SelectedColor.Red);
     }
 
@@ -114,14 +118,20 @@ public class GameSceneManager : MonoBehaviour
         btn.image.color = currentColor;
     }
 
-    private void SetPuzzleColor(PieceData selectedPiece)
+    private void SetPieceColor(PieceData selectedPiece)
     {
-        selectedPiece.button.image.color = GetColor(selectedPiece.button);
+        Color color = GetColor(selectedPiece.button);
+        selectedPiece.button.image.color = color;
+        selectedPiece.SetColor(color);
 
         foreach (var piece in selectedPiece.connectedPieceList)
         {
-            piece.button.image.color = GetColor(piece.button);
+            Color connectedPieceColor = GetColor(piece.button);
+            piece.button.image.color = connectedPieceColor;
+            piece.SetColor(connectedPieceColor);
         }
+
+        CheckPuzzleSucceed();
     }
 
     private Color GetColor(Button targetButton)
@@ -144,9 +154,16 @@ public class GameSceneManager : MonoBehaviour
         return result;
     }
 
-    [ContextMenu("Test")]
-    public void Test()
+    private void CheckPuzzleSucceed()
     {
-        Debug.Log("Clicked");
+        foreach (var piece in targetEventData.pieceDataList)
+        {
+            if (!piece.isSuccess)
+            {
+                return;
+            }
+        }
+
+        ReturnResult(true);
     }
 }
