@@ -92,6 +92,7 @@ public class EndingSceneMgr : MonoBehaviour
             }
         }
 
+        SoundMgr.In.StopBGM();
         SceneManager.LoadScene("MoveScene");
     }
 

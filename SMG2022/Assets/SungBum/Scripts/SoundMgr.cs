@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
 public class SoundMgr : SingletonMono<SoundMgr>
 {
-    #region ½Ì±ÛÅæ
+    #region ï¿½Ì±ï¿½ï¿½ï¿½
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -26,8 +26,8 @@ public class SoundMgr : SingletonMono<SoundMgr>
     public float masterVolumeSFX = 1f;
     public float masterVolumeBGM = 1f;
 
-    public AudioClip BGMClip; // ¿Àµð¿À ¼Ò½ºµé ÁöÁ¤.
-    public AudioClip[] audioClip; // ¿Àµð¿À ¼Ò½ºµé ÁöÁ¤.
+    public AudioClip BGMClip; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+    public AudioClip[] audioClip; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
     Dictionary<string, AudioClip> audioClipsDic;
     AudioSource sfxPlayer;
@@ -47,8 +47,6 @@ public class SoundMgr : SingletonMono<SoundMgr>
 
     void SetupBGM()
     {
-        if (BGMClip == null) return;
-
         GameObject child = new GameObject("BGM");
         child.transform.SetParent(transform);
         bgmPlayer = child.AddComponent<AudioSource>();
@@ -62,7 +60,12 @@ public class SoundMgr : SingletonMono<SoundMgr>
             bgmPlayer.Play();
     }
 
-    // ÇÑ ¹ø Àç»ý : º¼·ý ¸Å°³º¯¼ö·Î ÁöÁ¤
+    public bool IsBGMPlaying()
+    {
+        return bgmPlayer ? bgmPlayer.isPlaying : false;
+    }
+
+    // ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void PlaySound(string a_name, float a_volume = 1f)
     {
         if (audioClipsDic.ContainsKey(a_name) == false)
@@ -73,7 +76,7 @@ public class SoundMgr : SingletonMono<SoundMgr>
         sfxPlayer.PlayOneShot(audioClipsDic[a_name], a_volume * masterVolumeSFX);
     }
 
-    // ·£´ýÀ¸·Î ÇÑ ¹ø Àç»ý : º¼·ý ¸Å°³º¯¼ö·Î ÁöÁ¤
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void PlayRandomSound(string[] a_nameArray, float a_volume = 1f)
     {
         string l_playClipName;
@@ -88,7 +91,7 @@ public class SoundMgr : SingletonMono<SoundMgr>
         sfxPlayer.PlayOneShot(audioClipsDic[l_playClipName], a_volume * masterVolumeSFX);
     }
 
-    // »èÁ¦ÇÒ¶§´Â ¸®ÅÏ°ªÀº GameObject¸¦ ÂüÁ¶ÇØ¼­ »èÁ¦ÇÑ´Ù. ³ªÁß¿¡ ¿É¼Ç¿¡¼­ »ç¿îµå Å©±â Á¶Á¤ÇÏ¸é ÀÌ°Ç °°ÀÌ ÂüÁ¶ÇØ¼­ ¹Ù²î¾î¾ßÇÔ..
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ GameObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½É¼Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½..
     public GameObject PlayLoopSound(string a_name)
     {
         if (audioClipsDic.ContainsKey(a_name) == false)
@@ -97,22 +100,24 @@ public class SoundMgr : SingletonMono<SoundMgr>
             return null;
         }
 
-        GameObject l_obj = new GameObject("LoopSound");
-        AudioSource source = l_obj.AddComponent<AudioSource>();
-        source.clip = audioClipsDic[a_name];
-        source.volume = masterVolumeSFX;
-        source.loop = true;
-        source.Play();
-        return l_obj;
+        bgmPlayer.clip = audioClipsDic[a_name];
+        bgmPlayer.volume = masterVolumeSFX;
+        bgmPlayer.loop = true;
+        bgmPlayer.Play();
+
+        // GameObject l_obj = new GameObject("LoopSound");
+        // AudioSource source = l_obj.AddComponent<AudioSource>();
+        // source.clip = audioClipsDic[a_name];
+        return null;
     }
 
-    // ÁÖ·Î ÀüÅõ Á¾·á½Ã À½¾ÇÀ» ²ö´Ù.
+    // ï¿½Ö·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
     public void StopBGM()
     {
         bgmPlayer.Stop();
     }
 
-    #region ¿É¼Ç¿¡¼­ º¼·ýÁ¶Àý
+    #region ï¿½É¼Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void SetVolumeSFX(float a_volume)
     {
         masterVolumeSFX = a_volume;
