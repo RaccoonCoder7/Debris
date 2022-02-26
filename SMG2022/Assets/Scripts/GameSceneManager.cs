@@ -16,6 +16,8 @@ public class GameSceneManager : MonoBehaviour
     public Button resumeButton;
     public Button returnButton;
     public GameObject pausePanel;
+    public Timer timer;
+    public float timeLimit;
 
     private enum SelectedColor
     {
@@ -26,6 +28,12 @@ public class GameSceneManager : MonoBehaviour
         All = int.MaxValue
     };
     private SelectedColor selectedColor;
+
+
+    public void ReturnResult(bool isSuccess)
+    {
+        // TODO: GameManager 세팅, 씬전환
+    }
 
     private void Start()
     {
@@ -39,23 +47,24 @@ public class GameSceneManager : MonoBehaviour
         pauseButton.onClick.AddListener(OnClickPauseButton);
         resumeButton.onClick.AddListener(OnClickResumeButton);
         returnButton.onClick.AddListener(OnClickReturnButton);
+        timer.StartTimer(this, timeLimit);
     }
 
     private void OnClickPauseButton()
     {
         pausePanel.SetActive(true);
-        // TODO: 타이머 일시정지
+        timer.PauseTimer();
     }
 
     private void OnClickResumeButton()
     {
         pausePanel.SetActive(false);
-        // TODO: 타이머 재생
+        timer.ResumeTimer();
     }
 
     private void OnClickReturnButton()
     {
-        // TODO: 씬 전환: fail
+        ReturnResult(false);
     }
 
     private void OnClickTopButton()
