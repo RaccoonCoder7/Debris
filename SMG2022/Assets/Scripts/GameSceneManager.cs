@@ -16,10 +16,12 @@ public class GameSceneManager : MonoBehaviour
     public Button resumeButton;
     public Button returnButton;
     public Button helpButton;
+    public Button helpNextButton;
     public Button exitHelpButton;
     public Transform puzzleParent;
     public GameObject pausePanel;
     public GameObject helpPanel;
+    public GameObject helpPanel2;
     public GameObject resultPanel;
     public Text resultText;
     public Timer timer;
@@ -100,13 +102,20 @@ public class GameSceneManager : MonoBehaviour
         resumeButton.onClick.AddListener(delegate { OnClickResumeButton(pausePanel); });
         returnButton.onClick.AddListener(OnClickReturnButton);
         helpButton.onClick.AddListener(delegate { OnClickPauseButton(helpPanel); });
-        exitHelpButton.onClick.AddListener(delegate { OnClickResumeButton(helpPanel); });
+        helpNextButton.onClick.AddListener(OnClickHelpNextButtonButton);
+        exitHelpButton.onClick.AddListener(delegate { OnClickResumeButton(helpPanel2); });
 
         goalImage.sprite = targetEventData.goalSprite;
         timer.StartTimer(this, targetEventData.limitTime);
 
         SoundMgr.In.PlayLoopSound("8_PuzzleTheme");
         uiMgr.StartCoroutine(uiMgr.FadeOut());
+    }
+
+    private void OnClickHelpNextButtonButton()
+    {
+        helpPanel.SetActive(false);
+        helpPanel2.SetActive(true);
     }
 
     private void OnClickPauseButton(GameObject obj)
