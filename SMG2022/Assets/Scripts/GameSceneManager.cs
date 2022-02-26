@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameSceneManager : MonoBehaviour
 {
     public List<EventData> eventDataList = new List<EventData>();
+    public UIMgr_Game uiMgr;
     public Button redButton;
     public Button greenButton;
     public Button blueButton;
@@ -53,11 +54,19 @@ public class GameSceneManager : MonoBehaviour
         }
 
         resultPanel.SetActive(true);
-        Invoke("ChangeScene", 2f);
+        StartCoroutine(ChangeScene(1f));
     }
 
-    private void ChangeScene()
+    private IEnumerator ChangeScene(float waitTime)
     {
+        if (waitTime > 0f)
+        {
+            yield return new WaitForSeconds(waitTime);
+        }
+
+        uiMgr.StartCoroutine(uiMgr.FadeIn());
+        yield return new WaitForSeconds(1.0f);
+
         SceneManager.LoadScene("MoveScene");
     }
 
@@ -82,6 +91,7 @@ public class GameSceneManager : MonoBehaviour
         timer.StartTimer(this, targetEventData.limitTime);
 
         SoundMgr.In.PlayLoopSound("8_PuzzleTheme");
+        uiMgr.StartCoroutine(uiMgr.FadeOut());
     }
 
     private void OnClickPauseButton(GameObject obj)
@@ -101,7 +111,7 @@ public class GameSceneManager : MonoBehaviour
     private void OnClickReturnButton()
     {
         SoundMgr.In.PlaySound("4_button");
-        ChangeScene();
+        StartCoroutine(ChangeScene(0f));
     }
 
     private void OnClickRedButton()
