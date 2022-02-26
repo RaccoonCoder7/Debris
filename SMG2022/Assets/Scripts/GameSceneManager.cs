@@ -8,6 +8,8 @@ public class GameSceneManager : MonoBehaviour
 {
     public List<EventData> eventDataList = new List<EventData>();
     public List<ButtonData> buttonDataList = new List<ButtonData>();
+    public List<Sprite> resultSpriteList = new List<Sprite>();
+    public Sprite failSprite;
     public UIMgr_Game uiMgr;
     public Button redButton;
     public Button greenButton;
@@ -23,9 +25,9 @@ public class GameSceneManager : MonoBehaviour
     public GameObject helpPanel;
     public GameObject helpPanel2;
     public GameObject resultPanel;
-    public Text resultText;
     public Timer timer;
     public Image goalImage;
+    public Image resultImage;
 
     private EventData targetEventData;
 
@@ -60,13 +62,13 @@ public class GameSceneManager : MonoBehaviour
         if (isSuccess)
         {
             GameMgr.In.clearedEvent[GameMgr.In.EventNumber] = isSuccess;
-            resultText.text = "성공";
             SoundMgr.In.PlaySound("2_gameclear");
+            resultImage.sprite = resultSpriteList[GameMgr.In.EventNumber];
         }
         else
         {
-            resultText.text = "실패";
             SoundMgr.In.PlaySound("3_gameover");
+            resultImage.sprite = failSprite;
         }
 
         resultPanel.SetActive(true);
