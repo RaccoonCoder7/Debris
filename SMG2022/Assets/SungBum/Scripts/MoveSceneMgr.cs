@@ -11,6 +11,8 @@ public class MoveSceneMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundMgr.In.PlayLoopSound("6_MainMenuTheme");
+
         int EventIdx = 0;
 
         foreach(GameObject Obj in EventObj)
@@ -25,12 +27,4 @@ public class MoveSceneMgr : MonoBehaviour
 
         StageObj[GameMgr.In.Stage - 1].SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
 }

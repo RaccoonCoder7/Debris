@@ -21,6 +21,8 @@ public class UIMgr : MonoBehaviour
 
     public void ActiveStoryTxt()
     {
+        SoundMgr.In.PlaySound("4_button");
+
         if(StoryTxt.active == false)
         {
             StoryTxt.SetActive(true);
@@ -34,6 +36,8 @@ public class UIMgr : MonoBehaviour
 
     public void ActiveInformationTxt()
     {
+        SoundMgr.In.PlaySound("4_button");
+
         if (InformationTxt.active == false)
         {
             Debug.Log("open");
@@ -49,12 +53,16 @@ public class UIMgr : MonoBehaviour
 
     public void AcriveRocketScene()
     {
+        SoundMgr.In.PlaySound("4_button");
+
         GameMgr.In.PlayerPos = Player.transform.position;
         SceneManager.LoadScene("RocketScene");
     }
 
     public void AcriveMoveScene()
     {
+        SoundMgr.In.PlaySound("4_button");
+
         SceneManager.LoadScene("MoveScene");
     }
 }

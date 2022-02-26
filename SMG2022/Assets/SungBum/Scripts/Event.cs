@@ -25,6 +25,7 @@ public class Event : MonoBehaviour
             {
                 Debug.Log("asd");
 
+                GameMgr.In.PlayerPos = GameObject.Find("Player").transform.position;
                 SendEventNum();
 
                 SceneManager.LoadScene("GameScene");
