@@ -33,6 +33,16 @@ public class RocketSceneMgr : MonoBehaviour
     {
         StageRocketPart[StageNum].StageType.SetActive(true);
         StageRocketImg[StageNum].SetActive(true);
+
+        if(GameMgr.In.Stage <= 2)
+        {
+            StageRocketImg[StageNum].SetActive(true);
+        }
+
+        else
+        {
+            StageRocketImg[2].SetActive(true);
+        }
     }
 
     public void FireRocket()
