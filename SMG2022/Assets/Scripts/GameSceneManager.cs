@@ -13,8 +13,13 @@ public class GameSceneManager : MonoBehaviour
     public Button pauseButton;
     public Button resumeButton;
     public Button returnButton;
+    public Button helpButton;
+    public Button exitHelpButton;
     public Transform puzzleParent;
     public GameObject pausePanel;
+    public GameObject helpPanel;
+    public GameObject resultPanel;
+    public Text resultText;
     public Timer timer;
     public Image goalImage;
 
@@ -33,17 +38,25 @@ public class GameSceneManager : MonoBehaviour
 
     public void ReturnResult(bool isSuccess)
     {
+        timer.PauseTimer();
+
         if (isSuccess)
         {
             GameMgr.In.clearedEvent[GameMgr.In.EventNumber] = isSuccess;
+            resultText.text = "성공";
+            SoundMgr.In.PlaySound("2_gameclear");
+        }
+        else
+        {
+            resultText.text = "실패";
+            SoundMgr.In.PlaySound("3_gameover");
         }
 
-        timer.PauseTimer();
-        // TODO: 결과창, 파라미터 1개 더받아서 결과창 띄울지 말지
-        Invoke("Test", 1f);
+        resultPanel.SetActive(true);
+        Invoke("ChangeScene", 2f);
     }
 
-    private void Test()
+    private void ChangeScene()
     {
         SceneManager.LoadScene("MoveScene");
     }
@@ -59,44 +72,54 @@ public class GameSceneManager : MonoBehaviour
         redButton.onClick.AddListener(OnClickRedButton);
         greenButton.onClick.AddListener(OnClickGreenButton);
         blueButton.onClick.AddListener(OnClickBlueButton);
-        pauseButton.onClick.AddListener(OnClickPauseButton);
-        resumeButton.onClick.AddListener(OnClickResumeButton);
+        pauseButton.onClick.AddListener(delegate { OnClickPauseButton(pausePanel); });
+        resumeButton.onClick.AddListener(delegate { OnClickResumeButton(pausePanel); });
         returnButton.onClick.AddListener(OnClickReturnButton);
+        helpButton.onClick.AddListener(delegate { OnClickPauseButton(helpPanel); });
+        exitHelpButton.onClick.AddListener(delegate { OnClickResumeButton(helpPanel); });
 
         goalImage.sprite = targetEventData.goalSprite;
         timer.StartTimer(this, targetEventData.limitTime);
+
+        SoundMgr.In.PlayLoopSound("8_PuzzleTheme");
     }
 
-    private void OnClickPauseButton()
+    private void OnClickPauseButton(GameObject obj)
     {
-        pausePanel.SetActive(true);
+        obj.SetActive(true);
         timer.PauseTimer();
+        SoundMgr.In.PlaySound("4_button");
     }
 
-    private void OnClickResumeButton()
+    private void OnClickResumeButton(GameObject obj)
     {
-        pausePanel.SetActive(false);
+        obj.SetActive(false);
         timer.ResumeTimer();
+        SoundMgr.In.PlaySound("4_button");
     }
 
     private void OnClickReturnButton()
     {
-        ReturnResult(false);
+        SoundMgr.In.PlaySound("4_button");
+        ChangeScene();
     }
 
     private void OnClickRedButton()
     {
         SetColorButtonColor(redButton, SelectedColor.Red);
+        SoundMgr.In.PlaySound("4_button");
     }
 
     private void OnClickGreenButton()
     {
         SetColorButtonColor(greenButton, SelectedColor.Green);
+        SoundMgr.In.PlaySound("4_button");
     }
 
     private void OnClickBlueButton()
     {
         SetColorButtonColor(blueButton, SelectedColor.Blue);
+        SoundMgr.In.PlaySound("4_button");
     }
 
     private void SetColorButtonColor(Button btn, SelectedColor color)
@@ -132,6 +155,7 @@ public class GameSceneManager : MonoBehaviour
         }
 
         CheckPuzzleSucceed();
+        SoundMgr.In.PlaySound("4_button");
     }
 
     private Color GetColor(Button targetButton)
