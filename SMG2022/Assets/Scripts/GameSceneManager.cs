@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameSceneManager : MonoBehaviour
 {
     public List<EventData> eventDataList = new List<EventData>();
+    public List<ButtonData> buttonDataList = new List<ButtonData>();
     public UIMgr_Game uiMgr;
     public Button redButton;
     public Button greenButton;
@@ -35,6 +36,19 @@ public class GameSceneManager : MonoBehaviour
         All = int.MaxValue
     };
     private SelectedColor selectedColor;
+
+    [System.Serializable]
+    public class ButtonData
+    {
+        public Button button;
+        public Sprite on;
+        public Sprite off;
+
+        public void SetButtonColor(bool isOn)
+        {
+            button.image.sprite = isOn ? on : off;
+        }
+    }
 
 
     public void ReturnResult(bool isSuccess)
@@ -135,20 +149,18 @@ public class GameSceneManager : MonoBehaviour
     private void SetColorButtonColor(Button btn, SelectedColor color)
     {
         bool isSelected = (selectedColor & color) != 0;
-        var currentColor = btn.image.color;
+        var targetButtonData = buttonDataList.Find(x => x.button == btn);
 
         if (isSelected)
         {
             selectedColor &= ~color;
-            currentColor.a = 0.5f;
         }
         else
         {
             selectedColor |= color;
-            currentColor.a = 1;
         }
 
-        btn.image.color = currentColor;
+        targetButtonData.SetButtonColor(!isSelected);
     }
 
     private void SetPieceColor(PieceData selectedPiece)
