@@ -10,6 +10,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private float MovePower = 1.0f;
 
+    [SerializeField]
+    private Animator PlayerAnimator;
+
     float MoveX = 0;
 
     bool SoundOnePlay = true;
@@ -28,6 +31,14 @@ public class PlayerMove : MonoBehaviour
 
     void PCMove()
     {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (pos.x < 0.05f) pos.x = 0.05f;
+        if (pos.x > 0.95f) pos.x = 0.95f;
+
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
+
+
         MoveX = Input.GetAxisRaw("Horizontal");
 
         this.gameObject.transform.position += new Vector3(MoveX * MovePower * Time.deltaTime, 0, 0);
@@ -35,13 +46,30 @@ public class PlayerMove : MonoBehaviour
         if ((MoveX > 0 || MoveX < 0) && SoundOnePlay == true)
         {
             SoundOnePlay = false;
+            PlayerAnimator.SetBool("Move", true);
             StartCoroutine("WalkSound");
         }
 
         else if(MoveX == 0 && SoundOnePlay == false)
         {
             SoundOnePlay = true;
+            PlayerAnimator.SetBool("Move", false);
             StopCoroutine("WalkSound");
+        }
+
+        if(MoveX > 0)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+        else if (MoveX < 0)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        else
+        {
+            //Anim
         }
     }
 

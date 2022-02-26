@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UIMgr : MonoBehaviour
@@ -14,9 +15,23 @@ public class UIMgr : MonoBehaviour
     [SerializeField]
     GameObject Player;
 
+    [SerializeField]
+    RawImage FadePan;
+
+    public RawImage BackGround;
+
+    public List<Texture> BackGrounds;
+
     private void Start()
     {
+        StartCoroutine(FadeOut(FadePan));
+
         Player = GameObject.Find("Player");
+
+        Debug.Log(GameMgr.In.Stage - 1);
+
+        if((GameMgr.In.Stage - 1) > 0)
+            BackGround.texture = BackGrounds[GameMgr.In.Stage - 1];
     }
 
     public void ActiveStoryTxt()
@@ -56,13 +71,56 @@ public class UIMgr : MonoBehaviour
         SoundMgr.In.PlaySound("4_button");
 
         GameMgr.In.PlayerPos = Player.transform.position;
+        StartCoroutine(FadeIn(FadePan));
+    }
+
+    IEnumerator FadeIn(RawImage ObjColor)
+    {
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 0;
+
+        while (true)
+        {
+            Debug.Log(i);
+
+            yield return new WaitForSeconds(0.007f);
+
+            i += Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i >= 1.0f)
+            {
+                break;
+            }
+        }
+
         SceneManager.LoadScene("RocketScene");
     }
 
-    public void AcriveMoveScene()
+    IEnumerator FadeOut(RawImage ObjColor)
     {
-        SoundMgr.In.PlaySound("4_button");
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 1;
 
-        SceneManager.LoadScene("MoveScene");
+        while (true)
+        {
+            Debug.Log(i);
+
+            yield return new WaitForSeconds(0.007f);
+
+            i -= Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i <= 0.0f)
+            {
+                break;
+            }
+        }
+
+        ObjColor.gameObject.SetActive(false);
     }
 }

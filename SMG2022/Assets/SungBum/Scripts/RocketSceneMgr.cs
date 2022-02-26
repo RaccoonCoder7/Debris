@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class RocketSceneMgr : MonoBehaviour
 {
+    public RawImage FadePan;
+
     public List<StagePart> StageRocketPart;
 
     public GameObject FireBtn;
@@ -15,6 +17,10 @@ public class RocketSceneMgr : MonoBehaviour
     // Start is called before the first frame update 
     void Start() 
     {
+        StartCoroutine(FadeOut(FadePan));
+
+        SoundMgr.In.PlayLoopSound("6_MainMenuTheme");
+
         TypeSetting();
         ActiveImg();
 
@@ -28,10 +34,18 @@ public class RocketSceneMgr : MonoBehaviour
 
     public void FireRocket()
     {
-        GameMgr.In.Stage++;
-        //SceneManager.LoadScene("EndingScene");
+        SoundMgr.In.PlaySound("4_button");
 
         GameMgr.In.PlayerPos = GameMgr.In.BasicPlayerPos;
+
+        StartCoroutine(FadeInEnding(FadePan));
+    }
+
+    public void AcriveMoveScene()
+    {
+        SoundMgr.In.PlaySound("4_button");
+
+        StartCoroutine(FadeInMoveScene(FadePan));
     }
 
     void ActiveImg()
@@ -83,5 +97,78 @@ public class RocketSceneMgr : MonoBehaviour
                 FireBtn.SetActive(true);
             }
         }
+    }
+
+    IEnumerator FadeInEnding(RawImage ObjColor)
+    {
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 0;
+
+        while (true)
+        {
+            Debug.Log(i);
+
+            yield return new WaitForSeconds(0.007f);
+
+            i += Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i >= 1.0f)
+            {
+                break;
+            }
+        }
+        SceneManager.LoadScene("EndingScene");
+    }
+
+    IEnumerator FadeInMoveScene(RawImage ObjColor)
+    {
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 0;
+
+        while (true)
+        {
+            Debug.Log(i);
+
+            yield return new WaitForSeconds(0.007f);
+
+            i += Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i >= 1.0f)
+            {
+                break;
+            }
+        }
+        SceneManager.LoadScene("MoveScene");
+    }
+
+    IEnumerator FadeOut(RawImage ObjColor)
+    {
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 1;
+
+        while (true)
+        {
+            Debug.Log(i);
+
+            yield return new WaitForSeconds(0.007f);
+
+            i -= Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i <= 0.0f)
+            {
+                break;
+            }
+        }
+
+        ObjColor.gameObject.SetActive(false);
     }
 }

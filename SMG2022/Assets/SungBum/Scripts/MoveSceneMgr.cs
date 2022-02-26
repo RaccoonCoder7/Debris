@@ -6,7 +6,7 @@ public class MoveSceneMgr : MonoBehaviour
 {
     public List<GameObject> EventObj;
 
-    public List<GameObject> StageObj;
+    public List<GameObject> StageObj; 
 
     // Start is called before the first frame update
     void Start()

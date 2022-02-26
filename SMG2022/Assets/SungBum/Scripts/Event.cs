@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Event : MonoBehaviour
@@ -10,6 +11,9 @@ public class Event : MonoBehaviour
 
     [SerializeField]
     bool EventChk = false;
+
+    [SerializeField]
+    RawImage FadePan;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +32,7 @@ public class Event : MonoBehaviour
                 GameMgr.In.PlayerPos = GameObject.Find("Player").transform.position;
                 SendEventNum();
 
-                SceneManager.LoadScene("GameScene");
-
-                this.gameObject.SetActive(false);
+                StartCoroutine(FadeIn(FadePan));
             }
         }
     }
@@ -58,5 +60,30 @@ public class Event : MonoBehaviour
         string[] EventNumberArr = EventName.Split('_');
 
         GameMgr.In.EventNumber = int.Parse(EventNumberArr[SecondIdx]);
+    }
+
+    IEnumerator FadeIn(RawImage ObjColor)
+    {
+        ObjColor.gameObject.SetActive(true);
+        Color color = ObjColor.color;
+        float i = 0;
+
+        while (true)
+        {
+            Debug.Log(i);
+
+            yield return new WaitForSeconds(0.007f);
+
+            i += Time.deltaTime;
+            color.a = i;
+            ObjColor.color = color;
+
+            if (i >= 1.0f)
+            {
+                break;
+            }
+        }
+
+        SceneManager.LoadScene("GameScene");
     }
 }
