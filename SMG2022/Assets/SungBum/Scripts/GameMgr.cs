@@ -13,7 +13,6 @@ public class GameMgr : SingletonMono<GameMgr>
     public int Stage = 1;
 
     public int EventNumber = 0;
-    public GameObject Player;
 
     [SerializeField]
     int Stage1, Stage2, Stage3, Stage4, Stage5;
