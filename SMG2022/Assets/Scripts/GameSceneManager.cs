@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameSceneManager : MonoBehaviour
@@ -32,7 +33,12 @@ public class GameSceneManager : MonoBehaviour
 
     public void ReturnResult(bool isSuccess)
     {
-        // TODO: GameManager 세팅, 씬전환
+        if (isSuccess)
+        {
+            GameMgr.In.ClerclearedEvent[GameMgr.In.EventNumber] = isSuccess;
+        }
+
+        SceneManager.LoadScene("MoveScene");
     }
 
     private void Start()
@@ -84,6 +90,9 @@ public class GameSceneManager : MonoBehaviour
 
     private void OnClickMiddleButton()
     {
+        // TestCode
+        ReturnResult(true);
+        return;
         SetPuzzleColor(middlePiece);
     }
 
@@ -149,5 +158,15 @@ public class GameSceneManager : MonoBehaviour
         );
 
         return result;
+    }
+
+    [ContextMenu("Test")]
+    private void Test()
+    {
+        float tmpTime = Mathf.Ceil(timeLimit);
+        int minute = (int)tmpTime / 60;
+        int second = (int)tmpTime % 60;
+
+        Debug.Log($"{minute:00}:{second:00}");
     }
 }

@@ -596,7 +596,7 @@ MonoBehaviour:
   returnButton: {fileID: 217209159}
   pausePanel: {fileID: 847766052}
   timer: {fileID: 1858449435}
-  timeLimit: 0
+  timeLimit: 5
 --- !u!114 &393198803
 MonoBehaviour:
   m_ObjectHideFlags: 0
