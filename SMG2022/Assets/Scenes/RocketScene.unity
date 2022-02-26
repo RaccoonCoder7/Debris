@@ -596,8 +596,8 @@ MonoBehaviour:
     - {fileID: 54195464}
     - {fileID: 1445933670}
     RocketPart:
-    - {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
-    - {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 2800000, guid: 736ca8c66c6098a4db3a7f788501f982, type: 3}
+    - {fileID: 2800000, guid: ce6e68e4bbb91e44eaa42128d70a7a33, type: 3}
   - Stage: 2
     StageType: {fileID: 392614472}
     Part:

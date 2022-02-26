@@ -58,12 +58,14 @@ public class RocketSceneMgr : MonoBehaviour
             if (GameMgr.In.clearedEvent[0] == true)
             {
                 StageRocketPart[StageNum].Part[0].texture = StageRocketPart[StageNum].RocketPart[0];
+                StageRocketPart[StageNum].Part[0].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
             if (GameMgr.In.clearedEvent[1] == true)
             {
                 StageRocketPart[StageNum].Part[1].texture = StageRocketPart[StageNum].RocketPart[1];
+                StageRocketPart[StageNum].Part[1].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
@@ -78,18 +80,21 @@ public class RocketSceneMgr : MonoBehaviour
             if (GameMgr.In.clearedEvent[2] == true)
             {
                 StageRocketPart[StageNum].Part[0].texture = StageRocketPart[StageNum].RocketPart[0];
+                StageRocketPart[StageNum].Part[0].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
             if (GameMgr.In.clearedEvent[3] == true)
             {
                 StageRocketPart[StageNum].Part[1].texture = StageRocketPart[StageNum].RocketPart[1];
+                StageRocketPart[StageNum].Part[1].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
             if (GameMgr.In.clearedEvent[4] == true)
             {
                 StageRocketPart[StageNum].Part[2].texture = StageRocketPart[StageNum].RocketPart[2];
+                StageRocketPart[StageNum].Part[2].gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
                 FireCheck += 1;
             }
 
