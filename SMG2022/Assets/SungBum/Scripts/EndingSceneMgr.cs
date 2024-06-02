@@ -80,7 +80,7 @@ public class EndingSceneMgr : MonoBehaviour
         {
             Debug.Log(i);
 
-            yield return new WaitForSeconds(0.007f);
+            yield return new WaitForSeconds(0.002f);
 
             i += Time.deltaTime;
             color.a = i;
@@ -106,7 +106,7 @@ public class EndingSceneMgr : MonoBehaviour
         {
             Debug.Log(i);
 
-            yield return new WaitForSeconds(0.007f);
+            yield return new WaitForSeconds(0.002f);
 
             i -= Time.deltaTime;
             color.a = i;

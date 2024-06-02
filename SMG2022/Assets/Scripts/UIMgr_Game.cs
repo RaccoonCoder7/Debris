@@ -22,7 +22,7 @@ public class UIMgr_Game : MonoBehaviour
         while (true)
         {
 
-            yield return new WaitForSeconds(0.007f);
+            yield return new WaitForSeconds(0.002f);
 
             i += Time.deltaTime;
             color.a = i;
@@ -45,7 +45,7 @@ public class UIMgr_Game : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(0.007f);
+            yield return new WaitForSeconds(0.002f);
 
             i -= Time.deltaTime;
             color.a = i;
